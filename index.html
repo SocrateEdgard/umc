@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+git config --global user.name "Votre Nom"<!DOCTYPE html>
 <html lang="fr">
 <head>
    <meta charset="UTF-8">
@@ -9,15 +9,15 @@
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
     <meta name="author" content="UMC Construction">
 
-    <!-- Content Security Policy corrigée -->
+    <!-- Content Security Policy simplifiée pour Maps -->
     <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self';
-        script-src 'self';
-        style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-        img-src 'self' data: https:;
-        connect-src 'self' https://formspree.io;
-        frame-src https://www.google.com;">
+    default-src 'self';
+    script-src 'self' https://maps.googleapis.com https://maps.gstatic.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data: https:;
+    connect-src 'self' https://formspree.io;
+    frame-src https://www.google.com https://maps.google.com https://google.com https://*.google.com;">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,49 +29,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-
-    
-    <!-- Chargement différé de l'API Google Maps -->
-    <script>
-      function loadMap() {
-        const mapContainer = document.getElementById('map-container');
-        if (mapContainer) {
-            mapContainer.innerHTML = '';
-            const iframe = document.createElement('iframe');
-            iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.123456789012!2d25.456789!3d-10.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA3JzI0LjQiUyAyNcKwMjcnMjQuNCJF!5e0!3m2!1sfr!2scd!4v1234567890123!5m2!1sfr!2scd';
-            iframe.width = '100%';
-            iframe.height = '450';
-            iframe.style.border = '0';
-            iframe.allowFullscreen = true;
-            iframe.loading = 'lazy';
-            iframe.referrerPolicy = 'no-referrer-when-downgrade';
-            iframe.title = 'Localisation UMC Construction';
-            mapContainer.appendChild(iframe);
-        }
-      }
-      
-      // Charger la carte lorsque l'utilisateur interagit avec la page ou scroll
-      document.addEventListener('DOMContentLoaded', function() {
-        let mapLoaded = false;
-        
-        window.addEventListener('scroll', function() {
-          const mapSection = document.querySelector('.map-section');
-          if (mapSection && !mapLoaded && isInViewport(mapSection)) {
-            loadMap();
-            mapLoaded = true;
-            window.removeEventListener('scroll', this);
-          }
-        }, { passive: true });
-        
-        function isInViewport(element) {
-          const rect = element.getBoundingClientRect();
-          return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.bottom >= 0
-          );
-        }
-      });
-    </script>
 </head>
 <body>
     <!-- Header -->
@@ -91,6 +48,7 @@
                     <li><a href="#apropos" class="nav-link">À propos</a></li>
                     <li><a href="#services" class="nav-link">Services</a></li>
                     <li><a href="#projets" class="nav-link">Projets</a></li>
+                    <li><a href="#temoignages" class="nav-link">Témoignages</a></li>
                     <li><a href="#equipe" class="nav-link">Équipe</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -198,7 +156,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="constructionresidence.jpeg" alt="Construction résidentielle" loading="lazy" width="400" height="250">
+                        <img src="projet.jpg" alt="Construction résidentielle" loading="lazy" width="400" height="250">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
@@ -260,6 +218,26 @@
                         <p>Installation de systèmes sanitaires complexes, réseaux d'eau potable et usée, ainsi que solutions de traitement des eaux.</p>
                     </div>
                 </div>
+
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="plandemaison.jpg" 
+                             alt="Plan architectural d'une maison moderne" 
+                             loading="lazy" 
+                             width="400" 
+                             height="250">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-drafting-compass" aria-hidden="true"></i>
+                        </div>
+                        <h3>Conception de Plans de Maison</h3>
+                        <p>
+                            Élaboration de plans architecturaux sur mesure pour maisons modernes et traditionnelles, 
+                            en tenant compte de l'esthétique, de la fonctionnalité et du respect des normes de construction.
+                        </p>
+                    </div>
+                </div>
                 
                 <div class="service-card">
                     <div class="service-img">
@@ -294,31 +272,153 @@
                 
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.pexels.com/photos/1036936/pexels-photo-1036936.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Centre Commercial Lubumbashi" loading="lazy" width="400" height="300">
+                        <img src="projet2.jpg" alt="" loading="lazy" width="400" height="300">
                     </div>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Hôpital Provincial" loading="lazy" width="400" height="300">
+                        <img src="projet3.jpg" alt="Hôpital Provincial" loading="lazy" width="400" height="300">
                     </div>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="usine.jpg" alt="Usine de recyclage d'eau" loading="lazy" width="400" height="300">
+                        <img src="projet4.jpg" alt="Usine de recyclage d'eau" loading="lazy" width="400" height="300">
                     </div>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="usine.jpg" alt="Complexe Résidentiel" loading="lazy" width="400" height="300">
+                        <img src="projet5.jpeg" alt="Complexe Résidentiel" loading="lazy" width="400" height="300">
                     </div>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="" alt="École Primaire" loading="lazy" width="400" height="300">
+                        <img src="projet6.jpeg" alt="École Primaire" loading="lazy" width="400" height="300">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages Section -->
+    <section class="testimonials section-padding" id="temoignages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Témoignages <span>Clients</span></h2>
+                <p>Découvrez ce que nos clients disent de notre travail.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"UMC Construction a réalisé notre maison familiale dans les délais et avec une qualité exceptionnelle. Professionnalisme remarquable !"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>M. Kabasele Tshibangu</h4>
+                            <span>Propriétaire résidentiel</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Leur expertise en ingénierie nous a sauvé temps et argent sur notre projet commercial. Je recommande vivement UMC !"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Mme. Sarah Lukunku</h4>
+                            <span>Gérante d'entreprise</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"Service de maintenance industrielle impeccable. Intervention rapide et compétente. Partenaire de confiance depuis 2 ans."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>M. Patrick Mulumba</h4>
+                            <span>Directeur d'usine</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Les plans de maison conçus par UMC sont parfaits ! Ils ont su comprendre nos besoins et proposer des solutions innovantes."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Famille Mbayo</h4>
+                            <span>Clients particuliers</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Charpente métallique réalisée avec précision. Respect des délais et du budget. Excellente communication tout au long du projet."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>M. David Kanyinda</h4>
+                            <span>Entrepreneur en bâtiment</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -363,12 +463,6 @@
                         <p>Ingénieur en BTP</p>
                     </div>
                 </div>
-                
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="David Kalala" loading="lazy" width="300" height="300">
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -398,10 +492,11 @@
                             <i class="fas fa-phone-alt" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
-                            <h3>Téléphone</h3>
-                            <p>+243 970 000 000</p>
-                            <p>+243 810 000 000</p>
-                        </div>
+                        <h3>Téléphone</h3>
+                        <p><a href="tel:+243970000000">+243 970 000 000</a></p>
+                        <p><a href="tel:+243810000000">+243 810 000 000</a></p>
+                    </div>
+
                     </div>
                     
                     <div class="contact-item">
@@ -409,10 +504,11 @@
                             <i class="fas fa-envelope" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
-                            <h3>Email</h3>
-                            <p>info@umc-construction.cd</p>
-                            <p>contact@umc-construction.cd</p>
-                        </div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@umc-construction.cd">info@umc-construction.cd</a></p>
+                        <p><a href="mailto:contact@umc-construction.cd">contact@umc-construction.cd</a></p>
+                    </div>
+
                     </div>
                     
                     <div class="contact-item">
@@ -453,10 +549,18 @@
         </div>
     </section>
 
-    <!-- Map Section -->
+    <!-- Map Section - Version fonctionnelle -->
     <section class="map-section">
-        <div id="map-container">
-            <!-- Map will be loaded dynamically -->
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre <span>Localisation</span></h2>
+                <p>Retrouvez-nous à Kolwezi, République Démocratique du Congo</p>
+            </div>
+            <div id="map-container">
+                <button id="loadMapBtn" class="btn btn-primary">
+                    <i class="fas fa-map-marked-alt"></i> Charger la carte Google Maps
+                </button>
+            </div>
         </div>
     </section>
 
@@ -488,6 +592,7 @@
                         <li><a href="#apropos">À propos</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#projets">Projets</a></li>
+                        <li><a href="#temoignages">Témoignages</a></li>
                         <li><a href="#equipe">Équipe</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -496,17 +601,17 @@
                 <div class="footer-col">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="#">Construction Résidentielle</a></li>
-                        <li><a href="#">Ingénierie de Construction</a></li>
-                        <li><a href="#">Services Topographiques</a></li>
-                        <li><a href="#">Charpente Métallique</a></li>
-                        <li><a href="#">Plomberie Industrielle</a></li>
-                        <li><a href="#">Maintenance Industrielle</a></li>
+                        <li>Construction Résidentielle</li>
+                        <li>Ingénierie de Construction</li>
+                        <li>Services Topographiques</li>
+                        <li>Charpente Métallique</li>
+                        <li>Plomberie Industrielle</li>
+                        <li>Maintenance Industrielle</li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h3>Contact</h3>
+                    <h3>Contact et adresse</h3>
                     <ul>
                         <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Kolwezi, RDC</li>
                         <li><i class="fas fa-phone-alt" aria-hidden="true"></i> +243 970 000 000</li>
@@ -527,41 +632,66 @@
     </button>
 
     <script src="script.js"></script>
+    
+    <!-- Script pour la carte - VERSION FONCTIONNELLE -->
     <script>
-        const form = document.getElementById("contactForm");
-        const formMessage = document.getElementById("formMessage");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            // Afficher un message de chargement
-            formMessage.style.color = "blue";
-            formMessage.textContent = "⏳ Envoi en cours...";
-
-            const formData = new FormData(this);
-
-            fetch(form.action, {
-                method: "POST",
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(response => {
-                if (response.ok) {
-                    formMessage.style.color = "green";
-                    formMessage.textContent = "✅ Message envoyé avec succès ! Nous vous contacterons bientôt.";
-                    form.reset(); // vider le formulaire après succès
-                } else {
-                    response.json().then(data => {
-                        formMessage.style.color = "red";
-                        formMessage.textContent = data.error || "❌ Une erreur est survenue, veuillez réessayer.";
-                    });
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Initialisation de la carte...');
+            
+            const loadMapBtn = document.getElementById('loadMapBtn');
+            const mapContainer = document.getElementById('map-container');
+            
+            if (!loadMapBtn || !mapContainer) {
+                console.log('Éléments de carte non trouvés');
+                return;
+            }
+            
+            function loadGoogleMap() {
+                // Vérifier si la carte est déjà chargée
+                if (mapContainer.querySelector('iframe')) {
+                    return;
                 }
-            })
-            .catch(error => {
-                formMessage.style.color = "red";
-                formMessage.textContent = "❌ Une erreur est survenue, veuillez réessayer.";
-                console.error("Erreur Formspree:", error);
+                
+                // Afficher un message de chargement
+                mapContainer.innerHTML = '<div class="map-loading"><i class="fas fa-spinner fa-spin"></i><p>Chargement de la carte...</p></div>';
+                
+                // Créer l'iframe de la carte
+                setTimeout(() => {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24470.25226212601!2d25.495155668750005!3d-10.716202999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1977df7d6f6b7c3b%3A0x36254f726c3d5c65!2sKolwezi%2C%20Democratic%20Republic%20of%20the%20Congo!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus';
+                    iframe.width = '100%';
+                    iframe.height = '100%';
+                    iframe.style.border = '0';
+                    iframe.allowFullscreen = true;
+                    iframe.loading = 'lazy';
+                    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+                    iframe.title = 'Localisation UMC Construction à Kolwezi, RDC';
+                    
+                    mapContainer.innerHTML = '';
+                    mapContainer.appendChild(iframe);
+                }, 800);
+            }
+            
+            // Événement de clic sur le bouton
+            loadMapBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loadGoogleMap();
             });
+            
+            // Chargement automatique au scroll
+            const mapSection = document.querySelector('.map-section');
+            if (mapSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !mapContainer.querySelector('iframe')) {
+                            loadGoogleMap();
+                            observer.unobserve(mapSection);
+                        }
+                    });
+                }, { threshold: 0.3 });
+                
+                observer.observe(mapSection);
+            }
         });
     </script>
 </body>

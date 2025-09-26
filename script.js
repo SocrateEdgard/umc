@@ -1,4 +1,4 @@
-// script.js (remplace entièrement l'ancien fichier)
+// script.js (version complète avec le code de la carte intégré)
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function fadeInOnScroll() {
-    const elements = document.querySelectorAll('.service-card, .project-card, .team-member, .mission-box');
+    const elements = document.querySelectorAll('.service-card, .project-card, .team-member, .mission-box, .testimonial-card');
     const windowHeight = window.innerHeight;
     elements.forEach(element => {
       const elementTop = element.getBoundingClientRect().top;
@@ -198,5 +198,52 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /* ====== CARTE GOOGLE MAPS (moved here to avoid inline scripts) ====== */
+  (function() {
+    const loadMapBtn = document.getElementById('loadMapBtn');
+    const mapContainer = document.getElementById('map-container');
+
+    if (!loadMapBtn || !mapContainer) return;
+
+    function loadGoogleMap() {
+      if (mapContainer.querySelector('iframe')) return; // déjà chargé
+
+      mapContainer.innerHTML = '<div class="map-loading"><i class="fas fa-spinner fa-spin"></i><p>Chargement de la carte...</p></div>';
+
+      setTimeout(() => {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24470.25226212601!2d25.495155668750005!3d-10.716202999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1977df7d6f6b7c3b%3A0x36254f726c3d5c65!2sKolwezi%2C%20Democratic%20Republic%20of%20the%20Congo!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus';
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.style.border = '0';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.title = 'Localisation UMC Construction à Kolwezi, RDC';
+
+        mapContainer.innerHTML = '';
+        mapContainer.appendChild(iframe);
+      }, 800);
+    }
+
+    loadMapBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      loadGoogleMap();
+    });
+
+    const mapSection = document.querySelector('.map-section');
+    if (mapSection) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !mapContainer.querySelector('iframe')) {
+            loadGoogleMap();
+            obs.unobserve(mapSection);
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(mapSection);
+    }
+  })();
 
 }); // DOMContentLoaded end
