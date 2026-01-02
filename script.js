@@ -63,29 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', updateActiveNavLink);
 
   // ===========================================
-  // BOUTON BACK TO TOP
-  // ===========================================
-
-  const backToTopBtn = document.getElementById('backToTop');
-
-  if (backToTopBtn) {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 300) {
-        backToTopBtn.classList.add('active');
-      } else {
-        backToTopBtn.classList.remove('active');
-      }
-    });
-
-    backToTopBtn.addEventListener('click', function () {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  }
-
-  // ===========================================
   // ANIMATION DES STATISTIQUES
   // ===========================================
 
